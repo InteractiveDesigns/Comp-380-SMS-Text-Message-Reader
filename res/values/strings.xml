@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, SMSTextReceiverActivity!</string>
+    <string name="app_name">SMSTextReceiver</string>
+    <string name="txtPhoneNumberDummy">(805)555\-6666</string>
+    <string name="lblPhoneNumber">Phone Number:</string>
+    <string name="lblMessage">Message:</string>
+    <string name="txtMessageDummy">Hey how\'s it goin?</string>
+    <string name="View_SMS_Action_Text">Show_Message</string>
+
+</resources>
