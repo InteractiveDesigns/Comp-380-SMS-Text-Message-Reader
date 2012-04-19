@@ -1,40 +1,42 @@
-package text.Message;
+package comp380.Project.SMSTextReceiver;
+
+import android.app.DownloadManager.Request;
 
 public class ReadSMSTextMessageVCIController {
 	
-	ignoreMessage(){
+	public void ignoreMessage(){
 		
 	}
 	
-	replayMessage(){
+	public void replayMessage(){
 		
 	}
 	
-	handleUpdateRequest(request UpdateRequest){
+	public void handleUpdateRequest(Request UpdateRequest){
 		
 	}
 
-	initializeUI(){
+	public void initializeUI(){
 		
 	}
 	
-	closeUI(){
+	public void closeUI(){
 		
 	}
 	
-	playMessageRecievedVCMenu(){
+	public void playMessageRecievedVCMenu(){
 		
 	}
 	
-	playSmsTextMessage(){
+	public void playSmsTextMessage(){
 		
 	}
 	
-	readTextMessageCommandIssued(){
+	public void readTextMessageCommandIssued(){
 		
 	}
 	
-    exitCommandIssued(){
+    public void exitCommandIssued(){
     	
     }
     

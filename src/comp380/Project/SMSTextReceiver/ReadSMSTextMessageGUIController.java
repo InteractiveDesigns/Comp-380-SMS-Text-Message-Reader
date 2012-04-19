@@ -1,37 +1,39 @@
-package text.Message;
+package comp380.Project.SMSTextReceiver;
+
+import android.app.DownloadManager.Request;
 
 public class ReadSMSTextMessageGUIController {
 
 	
-	ignoreMessage(){
+	public void ignoreMessage(){
 		
 	}
 	
-	showMessage(){
+	public void showMessage(){
 	
 	}
 	
-	handleUpdateRequest(request UpdateRequest){
+	public void handleUpdateRequest(Request UpdateRequest){
 	
 	}
 	
-	initializeUI(){
+	public void initializeUI(){
 		
 	}
 	
-	closeUI(){ 
+	public void closeUI(){ 
 		
 	}
 	
-	displayMessageRecievedScreen(){
+	public void displayMessageRecievedScreen(){
 		
 	}
 	
-	displayViewTextMessageScreen(){
+	public void displayViewTextMessageScreen(){
 		
 	}
 	
-	viewTextMessageCommandIssue(){
+	public void viewTextMessageCommandIssue(){
 		
 	}
 	

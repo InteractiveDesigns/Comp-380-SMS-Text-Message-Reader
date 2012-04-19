@@ -1,4 +1,4 @@
-package text.Message;
+package comp380.Project.SMSTextReceiver;
 
 public class ReadSMSTextMessageUI {
 	protected void createUIControllers(){
@@ -9,7 +9,7 @@ public class ReadSMSTextMessageUI {
 		
 	}
 	
-	public void userRequestReceived(UserCommand command){
+	public void userRequestReceived(command UserCommand){
 		
 	}
 	
