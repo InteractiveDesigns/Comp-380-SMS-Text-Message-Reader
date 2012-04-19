@@ -14,7 +14,7 @@
     
     <application android:debuggable="true">
         <!-- The Show Message activity -->
-        <activity android:name=".ShowMessageActivity"
+        <activity android:name=".ReadSMSTextMessageActivity"
                   android:label="ShowMessageActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -23,7 +23,7 @@
         </activity>
         
         <!-- The SMS Text Message Receiver -->
-        <receiver android:name=".TextReceiver"
+        <receiver android:name=".SMSTextMessageReceiver"
                   android:label="TextReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />

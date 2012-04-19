@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 
-public class ShowMessageActivity extends Activity
+public class ReadSMSTextMessageActivity extends Activity
 {
+	
+	
+	
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);

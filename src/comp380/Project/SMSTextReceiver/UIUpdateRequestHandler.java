@@ -1,6 +1,6 @@
 package comp380.Project.SMSTextReceiver;
 
-public class UI_UpdateRequestHandler {
+public class UIUpdateRequestHandler {
 	
 	
 	public setHandleUpdateRequest(UpdateRequest request){

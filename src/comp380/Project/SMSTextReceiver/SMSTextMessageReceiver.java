@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 
-public class TextReceiver extends BroadcastReceiver {
+public class SMSTextMessageReceiver extends BroadcastReceiver {
 
 	
 	@Override
