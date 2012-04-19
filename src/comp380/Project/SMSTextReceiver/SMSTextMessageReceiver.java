@@ -12,12 +12,33 @@ public class SMSTextMessageReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent receivedIntent)
 	{
-		Intent intent = new Intent("comp380.Project.SMSTextReceiver.Show_Message");
+		Intent intent;
+		Bundle bundle;
+		SMSTextMessageInfo smsTextMessage;
+		
+		intent = new Intent("comp380.Project.SMSTextReceiver.Show_Message");
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		
-		Bundle extras = receivedIntent.getExtras();
+		bundle = receivedIntent.getExtras();
 		
-		Object[] smsExtra = (Object[]) extras.get( "pdus" ); // "pdus" is the key
+		smsTextMessage = createTextMessage(bundle);
+		
+		intent.getExtras().putSerializable("SMS_Text_Message", smsTextMessage);
+		
+		context.startActivity(intent);
+		
+		abortBroadcast();
+	}
+	
+	/**
+	 * Creates an SMSTextMessageInfo object given the bundle of data that is sent along with the request
+	 * 
+	 * @param androidData: The bundle of data that contains the sms text message info 
+	 * @return The SMS text message info read from the bundle of android data
+	 */
+	private SMSTextMessageInfo createTextMessage(Bundle androidData)
+	{
+		Object[] smsExtra = (Object[]) androidData.get( "pdus" ); // "pdus" is the key
 		
 		if (smsExtra.length > 0)
 		{
@@ -27,21 +48,10 @@ public class SMSTextMessageReceiver extends BroadcastReceiver {
 			// get content and number
 			String body = sms.getMessageBody();
 			String address = sms.getOriginatingAddress();
-			
-			intent.putExtra("SMS_Body", body);
-			intent.putExtra("SMS_Address", address);
-			
-			try
-			{
-				context.startActivity(intent);
-			}
-			catch(Exception ex)
-			{
-				System.out.println(ex.getMessage());
-			}
+	
+			return new SMSTextMessageInfo(address, body);
 		}
 		
-		abortBroadcast();
+		return null;
 	}
-
 }

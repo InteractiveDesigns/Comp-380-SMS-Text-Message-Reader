@@ -1,6 +1,8 @@
 package comp380.Project.SMSTextReceiver;
 
-public class SMSTextMessageInfo 
+import java.io.Serializable;
+
+public class SMSTextMessageInfo implements Serializable
 {
 
 	public String m_Adress;
