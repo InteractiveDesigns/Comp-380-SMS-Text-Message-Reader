@@ -68,7 +68,7 @@ public abstract class UserInterface
 	{
 		for (UIUpdateRequestHandler handler : updateHandlers)
 		{
-			handler.HandleUpdateRequest(command);
+			handler.handleUpdateRequest(command);
 		}
 	}
 	
