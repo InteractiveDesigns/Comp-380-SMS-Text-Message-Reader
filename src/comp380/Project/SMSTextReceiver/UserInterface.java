@@ -4,11 +4,15 @@ import java.util.ArrayList;
 
 public abstract class UserInterface
 {
-	
+	// the UI controllers for this user interface
 	private UIController[] uiControllers;
 	
+	// The update request handlers for the user interface
 	private UIUpdateRequestHandler[] updateHandlers;
 	
+	/**
+	 * Initializes the user interface
+	 */
 	public void initialize()
 	{
 		ArrayList<UIUpdateRequestHandler> updateRequestHandlers;
@@ -22,6 +26,7 @@ public abstract class UserInterface
 		for (UIController controller : uiControllers)
 		{
 			updateRequestHandlers.add(controller);
+			controller.initializeUI();
 		}
 		
 		for (UIUpdateRequestHandler handler : handlers)
@@ -34,24 +39,57 @@ public abstract class UserInterface
 		updateRequestHandlers.toArray(updateHandlers);
 	}
 	
+	/**
+	 * Shows the user interface
+	 */
 	public void show()
 	{
-		
+		for (UIController controller : uiControllers)
+		{
+			controller.showUI();
+		}
 	}
 	
+	/**
+	 * Closes the user interface
+	 */
 	public void close()
 	{
-		
+		for (UIController controller : uiControllers)
+		{
+			controller.closeUI();
+		}
 	}
 	
+	/**
+	 * Sends an update request to each of its handlers
+	 */
 	public void sendUpdateRequest(SystemCommand command)
 	{
-		
+		for (UIUpdateRequestHandler handler : updateHandlers)
+		{
+			handler.HandleUpdateRequest(command);
+		}
 	}
 	
+	/**
+	 * Creates a the UIControllers for the user interface
+	 * 
+	 * @return The UIControllers for the user interface
+	 */
 	protected abstract UIController[] createUIControllers();
 	
+	/**
+	 * Creates the update request handlers for the user interface
+	 * 
+	 * @return the update request handlers for the user interface
+	 */
 	protected abstract UIUpdateRequestHandler[] createUpdateRequestHandlers();
 	
+	/**
+	 * Handles the given user command
+	 * 
+	 * @param command The command to be handled
+	 */
 	public abstract void userRequestReceived(UserCommand command);
 }
