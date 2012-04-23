@@ -1,20 +1,28 @@
 package comp380.Project.SMSTextReceiver;
 
-import android.app.Activity;
-
 public abstract class UIController implements UIUpdateRequestHandler
 {
-	// The main activity that is currently running
-	protected Activity m_MainActivity;
+	// The parent interface of the controller
+	protected UserInterface m_UserInterface;
 	
 	/**
 	 * Creates a new instance of UIController given a main activity running
 	 * 
 	 * @param mainActivity The main activity running
 	 */
-	protected UIController(Activity mainActivity)
+	protected UIController(UserInterface userInterface)
 	{
-		m_MainActivity = mainActivity;
+		m_UserInterface = userInterface;
+	}
+	
+	/**
+	 * Handles the event that a user request has been received
+	 * 
+	 * @param command The user command received
+	 */
+	public void userCommandReceived(UserCommand command)
+	{
+		m_UserInterface.userRequestReceived(command);
 	}
 	
 	public abstract void initializeUI();

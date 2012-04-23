@@ -27,8 +27,8 @@ public class ReadSMSTextMessageUI extends UserInterface
 	@Override
 	protected UIController[] createUIControllers()
 	{
-		UIController guiController = new ReadSMSTextMessageGUIController(m_MainActivty);
-		UIController vciController = new ReadSMSTextMessageVCIController(m_MainActivty);
+		UIController guiController = new ReadSMSTextMessageGUIController(this);
+		UIController vciController = new ReadSMSTextMessageVCIController(this);
 		
 		return new UIController[] {guiController, vciController};
 	}
@@ -60,6 +60,23 @@ public class ReadSMSTextMessageUI extends UserInterface
 	@Override
 	public void userRequestReceived(UserCommand command)
 	{
-		return;
+		SystemCommand systemCommand = SystemCommand.IgnoreTextMessage;
+		
+		// create the system command from the user command
+		switch (command)
+		{
+			case IgnoreTextMessage:
+				systemCommand = SystemCommand.IgnoreTextMessage;
+			case ReadTextMessage:
+				systemCommand = SystemCommand.PresentTextMessage;
+			case ReplayTextMessage:
+				systemCommand = SystemCommand.ReplayTextMessage;
+		}
+		
+		// signal each controller to handle the update request
+		for (UIController controller : uiControllers)
+		{
+			controller.handleUpdateRequest(systemCommand);
+		}
 	}
 }

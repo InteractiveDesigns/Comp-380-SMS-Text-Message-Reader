@@ -1,18 +1,16 @@
 package comp380.Project.SMSTextReceiver;
 
-import android.app.Activity;
-
 public class ReadSMSTextMessageVCIController extends UIController
 {
 	
 	/**
-	 * Creates a new instance of ReadSMSTextMessageVCIController given the main running activity
+	 * Creates a new instance of ReadSMSTextMessageVCIController given the parent user interface object
 	 * 
-	 * @param mainActivity The currently running activity
+	 * @param userInterface The parent interface for this controller
 	 */
-	public ReadSMSTextMessageVCIController(Activity mainActivity)
+	public ReadSMSTextMessageVCIController(UserInterface userInterface)
 	{
-		super(mainActivity);
+		super(userInterface);
 	}
 	
 	/**
@@ -49,7 +47,15 @@ public class ReadSMSTextMessageVCIController extends UIController
 	@Override
 	public void handleUpdateRequest(SystemCommand request)
 	{
-		// TODO Auto-generated method stub	
+		switch(request)
+		{
+			case IgnoreTextMessage:
+				
+			case PresentTextMessage:
+				
+			case ReplayTextMessage:
+				
+		}
 	}
 }
 

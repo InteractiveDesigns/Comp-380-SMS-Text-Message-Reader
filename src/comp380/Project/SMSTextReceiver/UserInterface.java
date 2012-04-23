@@ -7,10 +7,10 @@ import android.app.Activity;
 public abstract class UserInterface
 {
 	// the UI controllers for this user interface
-	private UIController[] uiControllers;
+	protected UIController[] uiControllers;
 	
 	// The update request handlers for the user interface
-	private UIUpdateRequestHandler[] updateHandlers;
+	protected UIUpdateRequestHandler[] updateHandlers;
 	
 	// The main activity that is actually running
 	protected Activity m_MainActivty;
@@ -85,6 +85,16 @@ public abstract class UserInterface
 		{
 			handler.handleUpdateRequest(command);
 		}
+	}
+	
+	/**
+	 * Returns the main activity
+	 * 
+	 * @return the main activity
+	 */
+	public Activity getMainActivity()
+	{
+		return m_MainActivty;
 	}
 	
 	/**
