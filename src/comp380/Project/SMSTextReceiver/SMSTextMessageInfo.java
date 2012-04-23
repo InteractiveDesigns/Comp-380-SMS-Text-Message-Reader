@@ -6,6 +6,11 @@ public class SMSTextMessageInfo implements Serializable
 {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The phone number that sent the text message
 	 */
 	private final String m_PhoneNumber;
@@ -31,14 +36,15 @@ public class SMSTextMessageInfo implements Serializable
 	}
 	
 	/**
+	 * Creates a new instance of SMSTextMessageInfo
 	 * 
-	 * 
-	 * @param newAdress
-	 * @param newMessage
+	 * @param phoneNumber: The phone number of the text message
+	 * @param textualMessage: The textual message sent
 	 */
-	public  SMSTextMessageInfo(String newAdress, String newMessage)
+	public SMSTextMessageInfo(String phoneNumber, String textualMessage)
 	{
-		
+		m_PhoneNumber = phoneNumber;
+		m_Message = textualMessage;
 	}
 
 }

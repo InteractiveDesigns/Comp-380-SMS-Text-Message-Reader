@@ -1,24 +1,12 @@
 package comp380.Project.SMSTextReceiver;
 
-public class UIController {
-	public void userCommandReceived(UserCommand UserCommand){
-		
-		
-	}
+public abstract class UIController implements UIUpdateRequestHandler
+{
+	public abstract void initializeUI();
 	
-	public void initializeUI(){
-		
-	}
+	public abstract void showUI();
 	
-	public void showUI(){
-		
-	}
+	public abstract void handleUpdateRequest(SystemCommand request);
 	
-	public void handleUpdateRequest(UpdateRequest request){
-		
-	}
-	
-	public void closeUI(){
-		
-	}
+	public abstract void closeUI();
 }
