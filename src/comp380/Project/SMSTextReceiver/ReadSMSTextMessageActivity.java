@@ -3,7 +3,6 @@ package comp380.Project.SMSTextReceiver;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
 
 public class ReadSMSTextMessageActivity extends Activity
 {	
@@ -22,18 +21,8 @@ public class ReadSMSTextMessageActivity extends Activity
 		// get the Message and Address from the bundle
 		SMSTextMessageInfo textMessage = getSMStextMessageInfo(intent.getExtras());
 		
-		// Set the content view
-		setContentView(R.layout.text_view);
-		
-		// Set the text for the txtMessage control
-		EditText txtMessage = (EditText)this.findViewById(R.id.txtMessage);
-		txtMessage.setText(textMessage.getMessage());
-		
-		// Set the text for the txtPhoneNumber control
-		EditText txtPhoneNumber = (EditText)this.findViewById(R.id.txtPhoneNumber);
-		txtPhoneNumber.setText(textMessage.getPhoneNumber());
-		
-		createUserInterface();
+		// create the user interface to be used to show the SMS text message
+		createUserInterface(textMessage);
 	}
 	
 	/**
@@ -49,8 +38,13 @@ public class ReadSMSTextMessageActivity extends Activity
 		return info;
 	}
 	
-	private UserInterface createUserInterface()
+	/**
+	 * generates the user interface to be used for this activity
+	 * 
+	 * @return The user interface to be used for this activity
+	 */
+	private UserInterface createUserInterface(SMSTextMessageInfo textMessage)
 	{
-		return new ReadSMSTextMessageUI();
+		return new ReadSMSTextMessageUI((Activity)this, textMessage);
 	}
 }

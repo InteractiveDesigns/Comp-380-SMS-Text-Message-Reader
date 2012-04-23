@@ -1,7 +1,20 @@
 package comp380.Project.SMSTextReceiver;
 
+import android.app.Activity;
+
 public class ReadSMSTextMessageVCIController extends UIController
 {
+	
+	/**
+	 * Creates a new instance of ReadSMSTextMessageVCIController given the main running activity
+	 * 
+	 * @param mainActivity The currently running activity
+	 */
+	public ReadSMSTextMessageVCIController(Activity mainActivity)
+	{
+		super(mainActivity);
+	}
+	
 	/**
 	 * Initializes the UI controller
 	 */

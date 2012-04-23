@@ -1,7 +1,19 @@
 package comp380.Project.SMSTextReceiver;
 
+import android.app.Activity;
+
 public class ReadSMSTextMessageGUIController extends UIController
 {
+	/**
+	 * Creates a new instance of ReadSMSTextMessageGUIController given the main running activity
+	 * 
+	 * @param mainActivity The main activity running
+	 */
+	public ReadSMSTextMessageGUIController(Activity mainActivity)
+	{
+		super(mainActivity);
+	}
+	
 	/**
 	 * Initializes the UI controller
 	 */

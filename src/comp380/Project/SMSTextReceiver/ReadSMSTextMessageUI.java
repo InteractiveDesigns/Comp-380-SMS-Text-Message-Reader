@@ -1,27 +1,62 @@
 package comp380.Project.SMSTextReceiver;
 
+import android.app.Activity;
+
 public class ReadSMSTextMessageUI extends UserInterface
 {
 	
+	// The text message info to be shown to the user
+	private SMSTextMessageInfo m_TextMessage;
+	
+	/**
+	 * Creates a new instance of ReadSMSTextMessageUI
+	 * 
+	 * @param activity The main activity that is running
+	 */
+	public ReadSMSTextMessageUI(Activity activity, SMSTextMessageInfo textMessage)
+	{
+		super(activity);
+		m_TextMessage = textMessage;
+	}
+	
+	/**
+	 * Creates the UI controllers for the user interface
+	 * 
+	 * @return The UI controllers for this particular user interface
+	 */
 	@Override
 	protected UIController[] createUIControllers()
 	{
-		//UIController guiController = new UIController();
-		UIController vciController = new ReadSMSTextMessageVCIController();
+		UIController guiController = new ReadSMSTextMessageGUIController(m_MainActivty);
+		UIController vciController = new ReadSMSTextMessageVCIController(m_MainActivty);
 		
-		return new UIController[] {vciController};
+		return new UIController[] {guiController, vciController};
 	}
 	
+	/**
+	 * Creates a the update request handlers used by this user interface
+	 * 
+	 * @return The update request handlers used in this user interface
+	 */
 	@Override
 	protected UIUpdateRequestHandler[] createUpdateRequestHandlers()
 	{
-		return null;
+		return new UIUpdateRequestHandler[] {};
 	}
 	
-	public void exit(){
+	/**
+	 * Exits the user interface
+	 */
+	public void exit()
+	{
 		
 	}
 
+	/**
+	 * Handles the event that a user request is received
+	 * 
+	 * @param command: The command to be handled
+	 */
 	@Override
 	public void userRequestReceived(UserCommand command)
 	{

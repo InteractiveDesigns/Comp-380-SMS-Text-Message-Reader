@@ -2,6 +2,8 @@ package comp380.Project.SMSTextReceiver;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
+
 public abstract class UserInterface
 {
 	// the UI controllers for this user interface
@@ -9,6 +11,19 @@ public abstract class UserInterface
 	
 	// The update request handlers for the user interface
 	private UIUpdateRequestHandler[] updateHandlers;
+	
+	// The main activity that is actually running
+	protected Activity m_MainActivty;
+	
+	/**
+	 * Creates a new instance of UserInterface given the main activity
+	 * 
+	 * @param mainActivty The currently running activity
+	 */
+	protected UserInterface(Activity mainActivty)
+	{
+		m_MainActivty = mainActivty;
+	}
 	
 	/**
 	 * Initializes the user interface
