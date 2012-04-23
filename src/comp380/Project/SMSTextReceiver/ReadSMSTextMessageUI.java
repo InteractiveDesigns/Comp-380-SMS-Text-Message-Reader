@@ -9,7 +9,7 @@ public class ReadSMSTextMessageUI {
 		
 	}
 	
-	public void userRequestReceived(command UserCommand){
+	public void userRequestReceived(UserCommand UserCommand){
 		
 	}
 	

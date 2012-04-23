@@ -1,7 +1,7 @@
 package comp380.Project.SMSTextReceiver;
 
 public class UIController {
-	public void userCommandReceived(command UserCommand){
+	public void userCommandReceived(UserCommand UserCommand){
 		
 		
 	}

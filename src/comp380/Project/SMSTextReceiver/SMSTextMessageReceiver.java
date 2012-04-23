@@ -8,7 +8,12 @@ import android.telephony.SmsMessage;
 
 public class SMSTextMessageReceiver extends BroadcastReceiver {
 
-	
+	/**
+	 * The function that handles the onReceive event
+	 * 
+	 * @param context: The context in which the request is being handled
+	 * @param receivedIntent: The intent that was sent to this receiver
+	 */
 	@Override
 	public void onReceive(Context context, Intent receivedIntent)
 	{
@@ -16,24 +21,26 @@ public class SMSTextMessageReceiver extends BroadcastReceiver {
 		Bundle bundle;
 		SMSTextMessageInfo smsTextMessage;
 		
-		intent = new Intent("comp380.Project.SMSTextReceiver.Show_Message");
-		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		
+		// get the data bundle and the SMS Text Message info from it
 		bundle = receivedIntent.getExtras();
-		
 		smsTextMessage = createTextMessage(bundle);
 		
+		// create the intent object used to launch the read text message activity
+		intent = new Intent("comp380.Project.SMSTextReceiver.Show_Message");
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.getExtras().putSerializable("SMS_Text_Message", smsTextMessage);
 		
+		// start the activity and abort the broadcast
 		context.startActivity(intent);
 		
+		// make sure no other broadcast receivers handle the request
 		abortBroadcast();
 	}
 	
 	/**
 	 * Creates an SMSTextMessageInfo object given the bundle of data that is sent along with the request
 	 * 
-	 * @param androidData: The bundle of data that contains the sms text message info 
+	 * @param androidData: The bundle of data that contains the SMS text message info 
 	 * @return The SMS text message info read from the bundle of android data
 	 */
 	private SMSTextMessageInfo createTextMessage(Bundle androidData)
@@ -42,7 +49,7 @@ public class SMSTextMessageReceiver extends BroadcastReceiver {
 		
 		if (smsExtra.length > 0)
 		{
-			// get sms message
+			// get SMS Text Message
 			SmsMessage sms = SmsMessage.createFromPdu((byte[])smsExtra[0]);
 			
 			// get content and number
