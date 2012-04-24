@@ -27,8 +27,7 @@ public class ReadSMSTextMessageGUIController extends UIController
 	@Override
 	public void showUI()
 	{
-		// TODO Auto-generated method stub
-		
+		// TODO: Load the view object into the activity
 	}
 
 	/**
@@ -37,7 +36,7 @@ public class ReadSMSTextMessageGUIController extends UIController
 	@Override
 	public void closeUI()
 	{
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -46,6 +45,14 @@ public class ReadSMSTextMessageGUIController extends UIController
 	@Override
 	public void handleUpdateRequest(SystemCommand request)
 	{
-		// TODO Auto-generated method stub	
+		switch(request)
+		{
+			case IgnoreTextMessage:
+				
+			case PresentTextMessage:
+				
+			case ReplayTextMessage:
+				
+		}
 	}
 }
