@@ -1,16 +1,11 @@
 package comp380.Project.SMSTextReceiver;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 
 public abstract class UserInterface
 {
 	// the UI controllers for this user interface
 	protected UIController[] uiControllers;
-	
-	// The update request handlers for the user interface
-	protected UIUpdateRequestHandler[] updateHandlers;
 	
 	// The main activity that is actually running
 	protected Activity m_MainActivty;
@@ -29,29 +24,13 @@ public abstract class UserInterface
 	 * Initializes the user interface
 	 */
 	public void initialize()
-	{
-		ArrayList<UIUpdateRequestHandler> updateRequestHandlers;
-		UIUpdateRequestHandler[] handlers;
-		
-		updateRequestHandlers = new ArrayList<UIUpdateRequestHandler>();
-		
+	{	
 		uiControllers = createUIControllers();
-		handlers = createUpdateRequestHandlers();
 		
 		for (UIController controller : uiControllers)
 		{
-			updateRequestHandlers.add(controller);
 			controller.initializeUI();
 		}
-		
-		for (UIUpdateRequestHandler handler : handlers)
-		{
-			updateRequestHandlers.add(handler);
-		}
-		
-		updateHandlers = new UIUpdateRequestHandler[updateRequestHandlers.size()];
-		
-		updateRequestHandlers.toArray(updateHandlers);
 	}
 	
 	/**
@@ -79,11 +58,11 @@ public abstract class UserInterface
 	/**
 	 * Sends an update request to each of its handlers
 	 */
-	public void sendUpdateRequest(SystemCommand command)
+	protected void sendUpdateRequest(SystemCommand command)
 	{
-		for (UIUpdateRequestHandler handler : updateHandlers)
+		for (UIController controller : uiControllers)
 		{
-			handler.handleUpdateRequest(command);
+			controller.handleUpdateRequest(command);
 		}
 	}
 	
@@ -103,13 +82,6 @@ public abstract class UserInterface
 	 * @return The UIControllers for the user interface
 	 */
 	protected abstract UIController[] createUIControllers();
-	
-	/**
-	 * Creates the update request handlers for the user interface
-	 * 
-	 * @return the update request handlers for the user interface
-	 */
-	protected abstract UIUpdateRequestHandler[] createUpdateRequestHandlers();
 	
 	/**
 	 * Handles the given user command

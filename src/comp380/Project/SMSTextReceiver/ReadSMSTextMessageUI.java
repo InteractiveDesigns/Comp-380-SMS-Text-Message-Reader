@@ -34,17 +34,6 @@ public class ReadSMSTextMessageUI extends UserInterface
 	}
 	
 	/**
-	 * Creates a the update request handlers used by this user interface
-	 * 
-	 * @return The update request handlers used in this user interface
-	 */
-	@Override
-	protected UIUpdateRequestHandler[] createUpdateRequestHandlers()
-	{
-		return new UIUpdateRequestHandler[] {};
-	}
-	
-	/**
 	 * Exits the user interface
 	 */
 	public void exit()
@@ -57,7 +46,6 @@ public class ReadSMSTextMessageUI extends UserInterface
 	 * 
 	 * @param command: The command to be handled
 	 */
-	@Override
 	public void userRequestReceived(UserCommand command)
 	{
 		SystemCommand systemCommand = SystemCommand.IgnoreTextMessage;

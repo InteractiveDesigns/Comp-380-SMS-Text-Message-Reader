@@ -1,6 +1,6 @@
 package comp380.Project.SMSTextReceiver;
 
-public abstract class UIController implements UIUpdateRequestHandler
+public abstract class UIController
 {
 	// The parent interface of the controller
 	protected UserInterface m_UserInterface;
