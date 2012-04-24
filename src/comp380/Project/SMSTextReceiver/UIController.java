@@ -25,11 +25,23 @@ public abstract class UIController
 		m_UserInterface.userRequestReceived(command);
 	}
 	
+	/**
+	 * Initializes the UI controller
+	 */
 	public abstract void initializeUI();
 	
+	/**
+	 * Shows the user interface controller
+	 */
 	public abstract void showUI();
 	
+	/**
+	 * Handles update request from the main user interface
+	 */
 	public abstract void handleUpdateRequest(SystemCommand request);
 	
+	/**
+	 * Closes the UI controller
+	 */
 	public abstract void closeUI();
 }

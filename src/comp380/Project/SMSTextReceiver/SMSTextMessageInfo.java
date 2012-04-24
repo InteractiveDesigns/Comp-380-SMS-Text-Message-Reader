@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class SMSTextMessageInfo implements Serializable
 {
-
 	/**
-	 * 
+	 * The serial version UID used to identify this class
+	 * when serializing objects of this type
 	 */
 	private static final long serialVersionUID = 1L;
 

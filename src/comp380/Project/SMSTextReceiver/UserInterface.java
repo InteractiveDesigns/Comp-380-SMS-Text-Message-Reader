@@ -8,7 +8,7 @@ public abstract class UserInterface
 	protected UIController[] uiControllers;
 	
 	// The main activity that is actually running
-	protected Activity m_MainActivty;
+	private Activity m_MainActivty;
 	
 	/**
 	 * Creates a new instance of UserInterface given the main activity

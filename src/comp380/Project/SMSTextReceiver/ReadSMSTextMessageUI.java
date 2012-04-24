@@ -20,6 +20,16 @@ public class ReadSMSTextMessageUI extends UserInterface
 	}
 	
 	/**
+	 * Returns the SMSTextMessageInfo the UserInterface is using
+	 * 
+	 * @return the SMSTextMessageInfo the UserInterface is using
+	 */
+	public SMSTextMessageInfo getTextMessage()
+	{
+		return m_TextMessage;
+	}
+	
+	/**
 	 * Creates the UI controllers for the user interface
 	 * 
 	 * @return The UI controllers for this particular user interface
@@ -31,14 +41,6 @@ public class ReadSMSTextMessageUI extends UserInterface
 		UIController vciController = new ReadSMSTextMessageVCIController(this);
 		
 		return new UIController[] {guiController, vciController};
-	}
-	
-	/**
-	 * Exits the user interface
-	 */
-	public void exit()
-	{
-		
 	}
 
 	/**
