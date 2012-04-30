@@ -22,8 +22,9 @@ public class SMSTextMessagevNavigatorUI extends UserInterface
 	}
 
 	@Override
-	protected UIController[] createUIControllers() {
-		// TODO Auto-generated method stub
+	protected UIController[] createUIControllers()
+	{
+		
 		return null;
 	}
 
