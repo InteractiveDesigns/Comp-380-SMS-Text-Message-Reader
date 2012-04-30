@@ -28,7 +28,7 @@ public class SMSTextMessageReceiver extends BroadcastReceiver {
 		// create the intent object used to launch the read text message activity
 		intent = new Intent("comp380.Project.SMSTextReceiver.Show_Message");
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.getExtras().putSerializable(Constants.SMS_TEXT_MESSAGE_KEY, smsTextMessage);
+		intent.putExtra(Constants.SMS_TEXT_MESSAGE_KEY, smsTextMessage);
 		
 		// start the activity and abort the broadcast
 		context.startActivity(intent);
