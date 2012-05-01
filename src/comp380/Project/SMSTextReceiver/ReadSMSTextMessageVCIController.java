@@ -28,8 +28,7 @@ public class ReadSMSTextMessageVCIController extends UIController
 	@Override
 	public void showUI()
 	{
-		// TODO Auto-generated method stub
-		
+		// TODO: present the read/ignore menu
 	}
 
 	/**
@@ -50,11 +49,11 @@ public class ReadSMSTextMessageVCIController extends UIController
 		switch(request)
 		{
 			case IgnoreTextMessage:
-				
+				// TODO: exit
 			case PresentTextMessage:
-				
+				// TODO: Read SMS text message aloud
 			case ReplayTextMessage:
-				
+				// TODO: Replay message
 		}
 	}
 }

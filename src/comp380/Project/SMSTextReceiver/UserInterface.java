@@ -53,6 +53,8 @@ public abstract class UserInterface
 		{
 			controller.closeUI();
 		}
+		
+		m_MainActivty.finish();
 	}
 	
 	/**

@@ -15,7 +15,7 @@
     <application android:debuggable="true">
         <!-- The Show Message activity -->
         <activity android:name=".ReadSMSTextMessageActivity"
-                  android:label="ShowMessageActivity">
+                  android:label="SMS Text Message Receiver">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <action android:name="comp380.Project.SMSTextReceiver.Show_Message" />

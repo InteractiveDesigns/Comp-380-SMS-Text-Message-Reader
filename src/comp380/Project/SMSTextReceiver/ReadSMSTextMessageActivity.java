@@ -7,6 +7,11 @@ import android.os.Bundle;
 public class ReadSMSTextMessageActivity extends Activity
 {	
 	/**
+	 * The user interface for the Activity
+	 */
+	UserInterface m_UserInterface;
+	
+	/**
 	 * Handles the onCreate event
 	 * 
 	 * @param savedInstanceState: The instance data to use for the request
@@ -22,7 +27,10 @@ public class ReadSMSTextMessageActivity extends Activity
 		SMSTextMessageInfo textMessage = getSMStextMessageInfo(intent.getExtras());
 		
 		// create the user interface to be used to show the SMS text message
-		createUserInterface(textMessage);
+		// 
+		m_UserInterface = createUserInterface(textMessage);
+		m_UserInterface.initialize();
+		m_UserInterface.show();
 	}
 	
 	/**
