@@ -134,7 +134,8 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 		//m_UserInterface.userRequestReceived();
 	}
 
-	public void onRmsChanged(float arg0) {
+	public void onRmsChanged(float arg0)
+	{
 		// TODO Auto-generated method stub
 		
 	}
