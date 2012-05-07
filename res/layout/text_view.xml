@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="top"
-    android:orientation="vertical" >
-
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <Button
+        android:id="@+id/readNow"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="163dp"
+        android:text="Read Now" />
+
     <TextView
-        android:id="@+id/lblPhoneNumber"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:editable="false"
-        android:text="@string/lblPhoneNumber" />
-
-    <EditText
-        android:id="@+id/txtPhoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:editable="false"
-        android:inputType="phone"
-        android:text="@string/txtPhoneNumberDummy" >
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="TxT Messeger"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <requestFocus />
-    </EditText>
-
     <TextView
-        android:id="@+id/lblMessage"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:editable="false"
-        android:text="@string/lblMessage" />
-
-    <EditText
-        android:id="@+id/txtMessage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:editable="false"
-        android:inputType="textImeMultiLine|textMultiLine"
-        android:text="@string/txtMessageDummy" />
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="82dp"
+        android:text="Incoming Message !"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/readLater"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_alignBaseline="@+id/readNow"
+        android:layout_alignBottom="@+id/readNow"
+        android:layout_alignParentRight="true"
+        android:text="Read Later" />
+
+</RelativeLayout>

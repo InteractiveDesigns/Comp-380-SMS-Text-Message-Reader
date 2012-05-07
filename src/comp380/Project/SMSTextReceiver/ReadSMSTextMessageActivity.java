@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 public class ReadSMSTextMessageActivity extends Activity
 {	
+	
 	/**
 	 * The user interface for the Activity
 	 */
@@ -19,12 +20,13 @@ public class ReadSMSTextMessageActivity extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-		super.onCreate(savedInstanceState);
 		
-		Intent intent = getIntent();
+		super.onCreate(savedInstanceState); 
+		
+		//Intent intent = getIntent(); // comment this part
 		
 		// get the Message and Address from the bundle
-		SMSTextMessageInfo textMessage = getSMStextMessageInfo(intent.getExtras());
+		SMSTextMessageInfo textMessage = new  SMSTextMessageInfo("8182070596", "hello");
 		
 		// create the user interface to be used to show the SMS text message
 		// 

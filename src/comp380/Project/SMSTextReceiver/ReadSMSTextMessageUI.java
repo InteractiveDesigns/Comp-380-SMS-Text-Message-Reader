@@ -56,8 +56,10 @@ public class ReadSMSTextMessageUI extends UserInterface
 		switch (command)
 		{
 			case IgnoreTextMessage:
-				systemCommand = SystemCommand.IgnoreTextMessage;
+				close();
+				return;
 			case ReadTextMessage:
+				//////
 				systemCommand = SystemCommand.PresentTextMessage;
 			case ReplayTextMessage:
 				systemCommand = SystemCommand.ReplayTextMessage;
