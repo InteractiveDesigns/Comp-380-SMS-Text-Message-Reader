@@ -12,13 +12,9 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 public class ReadSMSTextMessageActivity extends Activity implements OnInitListener
 {	
 	
+
 	/**
-<<<<<<< .mine	 * The user interface for the Activity
-	 */
-	UserInterface m_UserInterface;
-	
-	/**
-=======	 * The user interface for the Activity
+	 * The user interface for the Activity
 	 */
 	UserInterface m_UserInterface;
 	SMSTextMessageInfo textMessage;
@@ -26,7 +22,7 @@ public class ReadSMSTextMessageActivity extends Activity implements OnInitListen
 	private static final int REQUEST_CODE = 15850;	
 	
 	/**
->>>>>>> .theirs	 * Handles the onCreate event
+     * Handles the onCreate event
 	 * 
 	 * @param savedInstanceState: The instance data to use for the request
 	 */
@@ -39,7 +35,7 @@ public class ReadSMSTextMessageActivity extends Activity implements OnInitListen
 		//Intent intent = getIntent(); // comment this part
 		
 		// get the Message and Address from the bundle
-		SMSTextMessageInfo textMessage = new  SMSTextMessageInfo("8182070596", "hello");
+		SMSTextMessageInfo textMessage = getSMStextMessageInfo(savedInstanceState);
 		
 		// create the user interface to be used to show the SMS text message
 		// 

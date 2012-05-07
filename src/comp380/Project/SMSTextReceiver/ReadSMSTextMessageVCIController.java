@@ -46,13 +46,10 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 	public void showUI()
 	{
 		// TODO: present the read/ignore menu
-<<<<<<< HEAD
-=======
 		mTts = new TextToSpeech(ui.getMainActivity(), this);
 		Handler handler = new Handler();
 		handler.postDelayed(new Runnable() {public void run() {startVoiceRecognitionActivity();}}, 3500);
 		//startVoiceRecognitionActivity();
->>>>>>> c2d0f271035d971c7fff5c67dfc1874ce8deed81
 	}
 
 	/**
