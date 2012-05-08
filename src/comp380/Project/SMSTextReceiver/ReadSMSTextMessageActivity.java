@@ -3,6 +3,8 @@ package comp380.Project.SMSTextReceiver;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class ReadSMSTextMessageActivity extends Activity
 {	
@@ -24,6 +26,11 @@ public class ReadSMSTextMessageActivity extends Activity
 		super.onCreate(savedInstanceState);
 		
 		Intent intent = getIntent();
+		
+		// Wakes from sleep and unlocks screen
+                final Window win = getWindow();
+                win.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+                win.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 		
 		// get the Message and Address from the bundle
 		textMessage = getSMStextMessageInfo(intent.getExtras());
