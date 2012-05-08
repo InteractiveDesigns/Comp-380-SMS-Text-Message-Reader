@@ -1,15 +1,10 @@
 package comp380.Project.SMSTextReceiver;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
-import android.speech.tts.TextToSpeech;
-import android.speech.tts.TextToSpeech.OnInitListener;
 
-public class ReadSMSTextMessageActivity extends Activity implements OnInitListener
+public class ReadSMSTextMessageActivity extends Activity
 {	
 	
 
@@ -18,8 +13,7 @@ public class ReadSMSTextMessageActivity extends Activity implements OnInitListen
 	 */
 	UserInterface m_UserInterface;
 	SMSTextMessageInfo textMessage;
-	private TextToSpeech mTts;
-	private static final int REQUEST_CODE = 15850;	
+	private static SMSTextMessageInfo textPass;
 	
 	/**
      * Handles the onCreate event
@@ -36,6 +30,7 @@ public class ReadSMSTextMessageActivity extends Activity implements OnInitListen
 		
 		// get the Message and Address from the bundle
 		SMSTextMessageInfo textMessage = getSMStextMessageInfo(savedInstanceState);
+		textPass = textMessage;
 		
 		// create the user interface to be used to show the SMS text message
 		// 
@@ -66,30 +61,9 @@ public class ReadSMSTextMessageActivity extends Activity implements OnInitListen
 	{
 		return new ReadSMSTextMessageUI((Activity)this, textMessage);
 	}
-
-	protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK)
-        {
-            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                   
-            if(matches.contains("read"))
-            {
-            	mTts = new TextToSpeech(this, this);
-            }
-            
-            else if(matches.contains("ignore"))
-            {
-            	finish();
-            }
-        }
-        
-        super.onActivityResult(requestCode, resultCode, data);
-    }
-    
-	public void onInit(int arg0) 
+	
+	static public SMSTextMessageInfo getTextMessage()
 	{
-		// TODO Auto-generated method stub
-		mTts.speak(textMessage.getMessage(), TextToSpeech.QUEUE_FLUSH, null);
+		return textPass;
 	}
 }

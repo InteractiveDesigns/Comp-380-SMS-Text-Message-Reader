@@ -38,6 +38,18 @@ public class ReadSMSTextMessageGUIController extends UIController
             }
         });
 		
+		
+		Button readExit = (Button)mainActivity.findViewById(R.id.exitNow);
+		
+		readExit.setOnClickListener(new View.OnClickListener() 
+		{
+            public void onClick(View v) 
+            {
+                m_UserInterface.userRequestReceived(UserCommand.IgnoreTextMessage);
+            }
+        });
+		
+		
 		Button readNowButton = (Button)mainActivity.findViewById(R.id.readNow);
 		
 		readNowButton.setOnClickListener(new View.OnClickListener() {

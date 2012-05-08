@@ -57,7 +57,6 @@ public class ReadSMSTextMessageUI extends UserInterface
 		{
 			case IgnoreTextMessage:
 				close();
-				return;
 			case ReadTextMessage:
 				//////
 				systemCommand = SystemCommand.PresentTextMessage;
