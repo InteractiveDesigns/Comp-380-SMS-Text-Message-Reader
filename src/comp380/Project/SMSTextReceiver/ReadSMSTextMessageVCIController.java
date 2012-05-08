@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class ReadSMSTextMessageVCIController extends UIController implements OnInitListener, RecognitionListener
 {
 	private TextToSpeech mTts;
-	private UserInterface ui;
 	private ArrayList<String> matches;
 	private SpeechRecognizer m_SpeechRecognizer;
 	private SMSTextMessageInfo textMessage;
@@ -27,9 +26,8 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 	public ReadSMSTextMessageVCIController(UserInterface userInterface)
 	{
 		super(userInterface);
-		ui = userInterface;
 		
-		m_SpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(ui.getMainActivity());
+		m_SpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(m_UserInterface.getMainActivity());
 		m_SpeechRecognizer.setRecognitionListener(this);
 	}
 	
@@ -50,7 +48,7 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 	{
 		// TODO: present the read/ignore menu
 		//mTts.setOnUtteranceCompletedListener(this);
-		mTts = new TextToSpeech(ui.getMainActivity(), this);
+		mTts = new TextToSpeech(m_UserInterface.getMainActivity(), this);
 		Handler handler = new Handler();
 		handler.postDelayed(new Runnable() {public void run() {startVoiceRecognitionActivity();}}, 3500);
 	}
@@ -104,7 +102,7 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
     {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, ui.getMainActivity().getApplication().getClass().getName());
+        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, m_UserInterface.getMainActivity().getApplication().getClass().getName());
         m_SpeechRecognizer.startListening(intent);      
     }
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ReadSMSTextMessageGUIController extends UIController
 {
@@ -85,10 +86,37 @@ public class ReadSMSTextMessageGUIController extends UIController
 				m_UserInterface.close();
 				break;
 			case PresentTextMessage:
-				m_UserInterface.getMainActivity().setContentView(R.layout.text_view);
+				showTextMessageView();
 				break;
 			case ReplayTextMessage:
 				break;
 		}
+	}
+	
+	private void showTextMessageView()
+	{
+		m_UserInterface.getMainActivity().setContentView(R.layout.present_text_message);
+		
+		TextView txtPhoneNumber = (TextView)m_UserInterface.getMainActivity().findViewById(R.id.txtPhoneNumber);
+		txtPhoneNumber.setText("(815) 555-1121");
+		
+		TextView txtMessage = (TextView)m_UserInterface.getMainActivity().findViewById(R.id.txtMessage);
+		txtMessage.setText("hello");
+		
+		Button btnExit = (Button)m_UserInterface.getMainActivity().findViewById(R.id.exitNow);
+		btnExit.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				m_UserInterface.userRequestReceived(UserCommand.IgnoreTextMessage);
+			}
+		});
+		
+		Button btnReplay = (Button)m_UserInterface.getMainActivity().findViewById(R.id.replay);
+		btnReplay.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				m_UserInterface.userRequestReceived(UserCommand.ReplayTextMessage);
+			}
+		});
 	}
 }
