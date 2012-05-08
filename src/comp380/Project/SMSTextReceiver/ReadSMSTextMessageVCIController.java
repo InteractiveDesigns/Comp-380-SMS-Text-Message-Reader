@@ -34,9 +34,6 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 		
 		m_SpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(ui.getMainActivity());
 		m_SpeechRecognizer.setRecognitionListener(this);
-        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, ui.getMainActivity().getApplication().getClass().getName());
 	}
 	
 	/**
