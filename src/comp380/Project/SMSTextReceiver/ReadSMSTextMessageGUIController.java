@@ -25,32 +25,6 @@ public class ReadSMSTextMessageGUIController extends UIController
 	public void initializeUI()
 	{
 		// TODO Auto-generated method stub
-		
-		Activity mainActivity = m_UserInterface.getMainActivity(); // displays the layout
-		mainActivity.setContentView(R.layout.text_view);
-		
-		Button readLaterButton = (Button)mainActivity.findViewById(R.id.readLater);
-		
-		readLaterButton.setOnClickListener(new View.OnClickListener() 
-		{
-            public void onClick(View v) 
-            {
-                m_UserInterface.userRequestReceived(UserCommand.IgnoreTextMessage);
-            }
-        });
-		
-		Button readNowButton = (Button)mainActivity.findViewById(R.id.readNow);
-		
-		readNowButton.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v)
-			{
-				// TODO Auto-generated method stub
-				
-				m_UserInterface.userRequestReceived(UserCommand.ReadTextMessage);
-				
-			}
-		});
 	}
 
 	/**
@@ -60,9 +34,6 @@ public class ReadSMSTextMessageGUIController extends UIController
 	public void showUI()
 	{
 		// TODO: Load the view object into the activity
-		
-		//code that handles the closing of the application
-		
 	}
 
 	/**
@@ -83,13 +54,12 @@ public class ReadSMSTextMessageGUIController extends UIController
 		switch(request)
 		{
 			case IgnoreTextMessage:
-				m_UserInterface.close();
-				break;
+				
 			case PresentTextMessage:
 				showTextMessageView();
 				break;
 			case ReplayTextMessage:
-				break;
+				
 		}
 	}
 	
