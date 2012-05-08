@@ -78,15 +78,18 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 		{
 			case IgnoreTextMessage:
 				// TODO: exit
-				ui.getMainActivity().finish();
+				closeUI();
+				break;
 			case PresentTextMessage:
 				// TODO: Read SMS text message aloud
 				textMessage = ReadSMSTextMessageActivity.getTextMessage();
 				mTts.speak(textMessage.getMessage(), TextToSpeech.QUEUE_FLUSH, null);
+				break;
 			case ReplayTextMessage:
 				// TODO: Replay message
 				textMessage = ReadSMSTextMessageActivity.getTextMessage();
 				mTts.speak(textMessage.getMessage(), TextToSpeech.QUEUE_FLUSH, null);
+				break;
 		}
 	}
 	
