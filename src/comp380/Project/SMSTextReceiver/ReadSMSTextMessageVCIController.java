@@ -1,5 +1,8 @@
 package comp380.Project.SMSTextReceiver;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,9 +12,6 @@ import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ReadSMSTextMessageVCIController extends UIController implements OnInitListener, RecognitionListener, OnUtteranceCompletedListener
 {
@@ -80,13 +80,14 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 		switch(request)
 		{
 			case IgnoreTextMessage:
-				ui.getMainActivity().finish();
+				closeUI();
 				break;
 			case PresentTextMessage:
 				textMessage = ReadSMSTextMessageActivity.getTextMessage();
 				mTts.speak(textMessage.getMessage(), TextToSpeech.QUEUE_FLUSH, userSpeech);
 				userSpeech.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "blank");
 				mTts.speak("Message is complete, replay or ignore?", TextToSpeech.QUEUE_ADD, userSpeech);
+				mTts.speak(textMessage.getMessage(), TextToSpeech.QUEUE_FLUSH, null);
 				break;
 			case ReplayTextMessage:
 				textMessage = ReadSMSTextMessageActivity.getTextMessage();
