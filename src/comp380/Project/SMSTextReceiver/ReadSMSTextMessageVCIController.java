@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -50,8 +49,6 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 	public void showUI()
 	{
 		mTts = new TextToSpeech(m_UserInterface.getMainActivity(), this);
-		Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {public void run() {startVoiceRecognitionActivity();}}, 3000);
 	}
 
 	/**
@@ -71,7 +68,7 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 	 */
 	@Override
 	public void handleUpdateRequest(SystemCommand request)
-	{
+	{	
 		switch(request)
 		{
 			case IgnoreTextMessage:
@@ -79,10 +76,9 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 				break;
 			case PresentTextMessage:
 				textMessage = ReadSMSTextMessageActivity.getTextMessage();
-				mTts.speak(textMessage.getMessage(), TextToSpeech.QUEUE_FLUSH, userSpeech);
+				mTts.speak(textMessage.getMessage(), TextToSpeech.QUEUE_FLUSH, null);
 				userSpeech.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "blank");
 				mTts.speak("Message is complete, replay or ignore?", TextToSpeech.QUEUE_ADD, userSpeech);
-				mTts.speak(textMessage.getMessage(), TextToSpeech.QUEUE_FLUSH, null);
 				break;
 			case ReplayTextMessage:
 				textMessage = ReadSMSTextMessageActivity.getTextMessage();
@@ -96,20 +92,21 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 	public void onInit(int arg0) 
 	{
 		mTts.setOnUtteranceCompletedListener(this);
-		mTts.speak("New message has arrived, read or ignore?", TextToSpeech.QUEUE_FLUSH, null);
+		userSpeech.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "blank");
+		mTts.speak("New message has arrived, read or ignore?", TextToSpeech.QUEUE_FLUSH, userSpeech);
 	}
 	
     private void startVoiceRecognitionActivity()
     {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, m_UserInterface.getMainActivity().getApplication().getClass().getName());
+        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, m_UserInterface.getMainActivity().getApplication().getClass().getName());   
         m_SpeechRecognizer.startListening(intent);      
     }
 
 	public void onBeginningOfSpeech() 
 	{
-	
+		System.out.println("Start");
 	}
 
 	public void onBufferReceived(byte[] arg0) 
@@ -177,7 +174,7 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 	
 	public void onUtteranceCompleted(String uttID) 
 	{
-		ui.getMainActivity().runOnUiThread(new Runnable() 
+		m_UserInterface.getMainActivity().runOnUiThread(new Runnable() 
 		{
 			public void run() 
 			{
