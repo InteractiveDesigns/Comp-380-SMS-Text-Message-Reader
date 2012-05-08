@@ -57,10 +57,13 @@ public class ReadSMSTextMessageUI extends UserInterface
 		{
 			case IgnoreTextMessage:
 				close();
+				break;
 			case ReadTextMessage:
 				systemCommand = SystemCommand.PresentTextMessage;
+				break;
 			case ReplayTextMessage:
 				systemCommand = SystemCommand.ReplayTextMessage;
+				break;
 		}
 		
 		// signal each controller to handle the update request
