@@ -26,10 +26,10 @@ public class ReadSMSTextMessageActivity extends Activity
 		
 		super.onCreate(savedInstanceState); 
 		
-		//Intent intent = getIntent(); // comment this part
+		Intent intent = getIntent(); // comment this part
 		
 		// get the Message and Address from the bundle
-		SMSTextMessageInfo textMessage = getSMStextMessageInfo(savedInstanceState);
+		SMSTextMessageInfo textMessage = getSMStextMessageInfo(intent.getExtras());
 		textPass = textMessage;
 		
 		// create the user interface to be used to show the SMS text message
