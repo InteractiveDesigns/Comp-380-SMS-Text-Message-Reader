@@ -106,7 +106,7 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 
 	public void onBeginningOfSpeech() 
 	{
-		System.out.println("Start");
+	
 	}
 
 	public void onBufferReceived(byte[] arg0) 
