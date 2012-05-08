@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="TxT Messeger"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/readNow"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="96dp"
+        android:text="Read" />
+
+    <Button
+        android:id="@+id/previous"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/readNow"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="27dp"
+        android:text="Previous" />
+
+    <Button
+        android:id="@+id/exitNow"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_alignBaseline="@+id/readNow"
+        android:layout_alignBottom="@+id/readNow"
+        android:layout_alignParentRight="true"
+        android:text="Exit" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_alignBaseline="@+id/previous"
+        android:layout_alignBottom="@+id/previous"
+        android:layout_alignParentRight="true"
+        android:text="Next" />
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="60dp" >
+    </TableLayout>
+
+</RelativeLayout>
