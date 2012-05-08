@@ -14,13 +14,18 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int readLater=0x7f050003;
-        public static final int readNow=0x7f050000;
-        public static final int textView1=0x7f050001;
-        public static final int textView2=0x7f050002;
+        public static final int exitNow=0x7f050003;
+        public static final int next=0x7f050004;
+        public static final int previous=0x7f050002;
+        public static final int readLater=0x7f050007;
+        public static final int readNow=0x7f050001;
+        public static final int tableLayout1=0x7f050005;
+        public static final int textView1=0x7f050000;
+        public static final int textView2=0x7f050006;
     }
     public static final class layout {
-        public static final int text_view=0x7f030000;
+        public static final int smsnavigationgui=0x7f030000;
+        public static final int text_view=0x7f030001;
     }
     public static final class string {
         public static final int View_SMS_Action_Text=0x7f040006;

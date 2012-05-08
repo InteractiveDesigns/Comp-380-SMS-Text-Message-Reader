@@ -39,6 +39,6 @@
         android:layout_alignBaseline="@+id/readNow"
         android:layout_alignBottom="@+id/readNow"
         android:layout_alignParentRight="true"
-        android:text="Read Later" />
+        android:text="Ignore" />
 
 </RelativeLayout>
