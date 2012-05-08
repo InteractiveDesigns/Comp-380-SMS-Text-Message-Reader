@@ -8,16 +8,19 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
+import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class ReadSMSTextMessageVCIController extends UIController implements OnInitListener, RecognitionListener
+public class ReadSMSTextMessageVCIController extends UIController implements OnInitListener, RecognitionListener, OnUtteranceCompletedListener
 {
 	private TextToSpeech mTts;
 	private UserInterface ui;
 	private ArrayList<String> matches;
 	private SpeechRecognizer m_SpeechRecognizer;
 	private SMSTextMessageInfo textMessage;
+	private HashMap<String, String> userSpeech = new HashMap<String, String>();
 	
 	/**
 	 * Creates a new instance of ReadSMSTextMessageVCIController given the parent user interface object
@@ -31,6 +34,9 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 		
 		m_SpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(ui.getMainActivity());
 		m_SpeechRecognizer.setRecognitionListener(this);
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, ui.getMainActivity().getApplication().getClass().getName());
 	}
 	
 	/**
@@ -39,7 +45,7 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 	@Override
 	public void initializeUI()
 	{
-		// TODO Auto-generated method stub		
+			
 	}
 
 	/**
@@ -48,11 +54,9 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 	@Override
 	public void showUI()
 	{
-		// TODO: present the read/ignore menu
-		//mTts.setOnUtteranceCompletedListener(this);
 		mTts = new TextToSpeech(ui.getMainActivity(), this);
 		Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {public void run() {startVoiceRecognitionActivity();}}, 3500);
+		handler.postDelayed(new Runnable() {public void run() {startVoiceRecognitionActivity();}}, 3000);
 	}
 
 	/**
@@ -61,7 +65,6 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 	@Override
 	public void closeUI()
 	{
-		// TODO Auto-generated method stub
 		mTts.stop();
 		mTts.shutdown();
 		m_SpeechRecognizer.cancel();
@@ -77,23 +80,26 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 		switch(request)
 		{
 			case IgnoreTextMessage:
-				// TODO: exit
 				ui.getMainActivity().finish();
+				break;
 			case PresentTextMessage:
-				// TODO: Read SMS text message aloud
 				textMessage = ReadSMSTextMessageActivity.getTextMessage();
-				mTts.speak(textMessage.getMessage(), TextToSpeech.QUEUE_FLUSH, null);
+				mTts.speak(textMessage.getMessage(), TextToSpeech.QUEUE_FLUSH, userSpeech);
+				userSpeech.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "blank");
+				mTts.speak("Message is complete, replay or ignore?", TextToSpeech.QUEUE_ADD, userSpeech);
+				break;
 			case ReplayTextMessage:
-				// TODO: Replay message
 				textMessage = ReadSMSTextMessageActivity.getTextMessage();
 				mTts.speak(textMessage.getMessage(), TextToSpeech.QUEUE_FLUSH, null);
+				userSpeech.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "blank");
+				mTts.speak("Message is complete, replay or ignore?", TextToSpeech.QUEUE_ADD, userSpeech);
+				break;
 		}
 	}
 	
 	public void onInit(int arg0) 
 	{
-		// TODO Auto-generated method stub
-		//speech.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "end");
+		mTts.setOnUtteranceCompletedListener(this);
 		mTts.speak("New message has arrived, read or ignore?", TextToSpeech.QUEUE_FLUSH, null);
 	}
 	
@@ -101,50 +107,44 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
     {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, ui.getMainActivity().getApplication().getClass().getName());
+        intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, ui.getMainActivity().getApplication().getClass().getName());   
         m_SpeechRecognizer.startListening(intent);      
     }
 
 	public void onBeginningOfSpeech() 
 	{
-		// TODO Auto-generated method stub
-		System.out.println("Beginning of Speech");	
+	
 	}
 
 	public void onBufferReceived(byte[] arg0) 
 	{
-		// TODO Auto-generated method stub
-		System.out.println("Buffer");	
+
 	}
 
 	public void onEndOfSpeech() 
 	{
-		// TODO Auto-generated method stub
-		System.out.println("onEndOfSpeech");	
+	
 	}
 
 	public void onError(int arg0) 
 	{
-		// TODO Auto-generated method stub
-		System.out.println("onError");
+		userSpeech.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "blank");
+		mTts.speak("Command not recognized, please repeat.", TextToSpeech.QUEUE_FLUSH, userSpeech);
 	}
 
 	public void onEvent(int arg0, Bundle arg1) 
 	{
-		// TODO Auto-generated method stub
-		System.out.println("onEvent");	
+	
 	}
 
 	public void onPartialResults(Bundle arg0) 
 	{
-		// TODO Auto-generated method stub
-		System.out.println("onPartialResults");	
+	
 	}
 
 	public void onReadyForSpeech(Bundle arg0) 
 	{
-		// TODO Auto-generated method stub
-		System.out.println("onReadyForSpeech");	
+	
 	}
 
 	public void onResults(Bundle results)
@@ -166,21 +166,27 @@ public class ReadSMSTextMessageVCIController extends UIController implements OnI
 		{
 			m_UserInterface.userRequestReceived(UserCommand.ReplayTextMessage);
 		}
+		
+		else
+		{
+			userSpeech.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "blank");
+			mTts.speak("Command not recognized, please repeat.", TextToSpeech.QUEUE_FLUSH, userSpeech);
+		}
 	}
 
 	public void onRmsChanged(float arg0)
 	{
-		System.out.println("RMS Changed");
-		// TODO Auto-generated method stub
+		
 	}
 	
 	public void onUtteranceCompleted(String uttID) 
 	{
-		// TODO Auto-generated method stub
-		/*if(uttID == "end")
+		ui.getMainActivity().runOnUiThread(new Runnable() 
 		{
-			m_SpeechRecognizer.startListening(intent2);
-		}
-		*/
+			public void run() 
+			{
+				startVoiceRecognitionActivity();			
+			}
+		});
 	}
 }
